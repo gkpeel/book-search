@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const mongoose = require("mongoose");
+const db = require('./models');
 // const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,6 +16,14 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
+// Saved Books test route
+app.get("/saved", (req, res) => {
+  db.Book
+    .find({})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+})
+
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
