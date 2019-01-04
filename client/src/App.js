@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
 
   componentDidMount() {
     console.log('consoleDidMount did run');
+    axios.get("saved")
+      .then(response => {
+        console.log(response);
+      })
   }
+
   render() {
     return (
       <div className="App">
