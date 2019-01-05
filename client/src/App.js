@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import axios from "axios";
+import Jumbotron from "./components/Jumbotron";
+import Navbar from "./components/Navbar";
 import "./App.css";
 
 class App extends Component {
@@ -16,10 +17,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
+        <Navbar />
+        <Jumbotron />
         <p className="App-intro">
           ATTEMPT #2 - Hello World, To get started, edit <code>src/App.js</code> and save to reload.
         </p>
