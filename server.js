@@ -1,23 +1,21 @@
 const express = require("express");
-const path = require("path");
-
-const mongoose = require("mongoose");
-const db = require('./models');
-// const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Define middleware here
+// DB Stuff
+const mongoose = require("mongoose");
+const db = require('./models');
+
+// Middleware stuff
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Define API routes here
+// Route Stuff
 // Saved Books test route
-app.get("/saved", (req, res) => {
+app.get("/api/books", (req, res) => {
   db.Book
     .find({})
     .then(dbModel => res.json(dbModel))
@@ -25,7 +23,6 @@ app.get("/saved", (req, res) => {
 })
 
 // Send every other request to the React app
-// Define any API routes before this runs
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
